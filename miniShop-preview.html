@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>miniShop · Brandi-styled preview</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Open Sans', sans-serif; color:#6a737b; background:#fff; line-height:1.6; }
+a { text-decoration:none; }
+h1,h2,h3,h4,h5,h6 { font-weight:normal; margin:0; }
+.container { max-width:1100px; margin:0 auto; padding:0 20px; }
+.sec-title { text-align:center; margin-bottom:20px; }
+.sec-title h2 { color:#0eb493; font-size:26px; font-weight:800; text-transform:uppercase; letter-spacing:1px; }
+.devider { margin-top:20px; color:#cccccc; }
+.sec-sub-title { text-align:center; margin:20px 0 40px; }
+.sec-sub-title p { font-weight:600; font-size:16px; color:#5b646e; }
+
+/* nav */
+header.navbar { position:sticky; top:0; z-index:100; background:#062033; padding:14px 0; }
+.navwrap { display:flex; align-items:center; justify-content:space-between; }
+.logo { color:#fff; font-size:22px; font-weight:800; }
+.navlinks { display:flex; align-items:center; gap:24px; list-style:none; }
+.navlinks a { color:#fff; font-size:14px; font-weight:600; }
+.navlinks a:hover { color:#0feb9e; }
+.cart-icon-link { position:relative; padding:6px 16px; background:rgba(255,255,255,0.08); border-radius:40px; color:#fff !important; font-weight:700 !important; }
+.cart-icon-link:hover { background:#0eb493; }
+.cart-count { display:inline-block; min-width:18px; margin-left:6px; padding:1px 6px; background:#0feb9e; color:#062033; font-size:11px; font-weight:800; border-radius:20px; text-align:center; }
+
+/* hero */
+.hero { background:linear-gradient(135deg,#062033,#0d3a57); padding:110px 20px 100px; text-align:center; color:#fff; }
+.hero h2 { font-size:46px; font-weight:300; }
+.hero h2 span { font-weight:800; }
+.hero h3 { font-size:22px; font-weight:300; margin:10px 0 6px; }
+.hero h3 .color { color:#0feb9e; }
+.hero p { font-size:16px; opacity:.85; margin-bottom:30px; }
+.hero-cta { display:inline-block; padding:12px 34px; background:#0eb493; color:#fff; font-weight:700; text-transform:uppercase; letter-spacing:.5px; border-radius:40px; }
+.hero-cta:hover { background:#0feb9e; color:#062033; }
+
+/* features */
+.features { background:#f4f7f9; padding:70px 0; }
+.feature-row { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
+.service-item { display:flex; align-items:flex-start; gap:20px; max-width:320px; }
+.service-icon { border:1px solid #0eb493; border-radius:50%; color:#0eb493; padding:14px 17px; flex-shrink:0; }
+.service-desc h3 { color:#062033; font-size:18px; font-weight:700; margin-bottom:10px; }
+.service-desc p { font-size:14px; }
+
+/* shop */
+.shop-section { padding:70px 0; }
+.product-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:24px; margin-top:20px; }
+.product-card { background:#f4f7f9; border-radius:12px; padding:26px 18px 22px; display:flex; flex-direction:column; align-items:center; text-align:center; border:1px solid #e6e8ea; transition:.2s; }
+.product-card:hover { transform:translateY(-6px); box-shadow:0 15px 30px rgba(6,32,51,.08); border-color:#0eb493; }
+.product-emoji { font-size:3rem; margin-bottom:12px; }
+.product-name { font-weight:700; font-size:15px; color:#062033; margin-bottom:6px; }
+.product-price { font-size:19px; font-weight:800; color:#0eb493; margin-bottom:16px; }
+.product-price::before { content:'$'; font-size:13px; font-weight:600; color:#5b646e; margin-right:2px; }
+.add-btn { background:#062033; color:#fff; border:none; border-radius:40px; padding:10px 18px; font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.5px; display:flex; align-items:center; gap:8px; cursor:pointer; width:100%; justify-content:center; margin-top:auto; }
+.add-btn:hover { background:#0eb493; }
+
+/* cart */
+.cart-section { background:#f4f7f9; padding:70px 0; }
+.cart-layout { display:flex; gap:30px; flex-wrap:wrap; }
+.cart-address { flex:1 1 220px; }
+.cart-address h3 { color:#062033; font-size:18px; font-weight:700; margin-bottom:20px; }
+.cart-address p { font-size:14px; margin-bottom:12px; }
+.cart-address p i { color:#0eb493; width:20px; }
+.cart-panel { flex:2 1 400px; background:#fff; border-radius:12px; padding:30px; box-shadow:0 10px 30px rgba(6,32,51,.05); border:1px solid #e6e8ea; }
+.cart-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+.cart-header h3 { font-size:18px; font-weight:700; color:#062033; }
+.clear-cart { background:none; border:1px solid #e6e8ea; border-radius:30px; padding:6px 14px; font-size:12px; font-weight:600; color:#5b646e; cursor:pointer; }
+.clear-cart:hover { border-color:#0eb493; color:#062033; }
+.cart-items { list-style:none; display:flex; flex-direction:column; gap:10px; max-height:280px; overflow-y:auto; margin-bottom:18px; }
+.cart-item { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; background:#f4f7f9; padding:10px 16px; border-radius:10px; font-size:13px; }
+.cart-item-info { display:flex; align-items:center; gap:10px; }
+.cart-item-emoji { font-size:1.4rem; }
+.cart-item-name { font-weight:600; color:#062033; }
+.cart-item-price { font-weight:700; color:#0eb493; }
+.cart-item-actions { display:flex; align-items:center; gap:8px; }
+.qty-btn { background:#fff; border:1px solid #e6e8ea; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; color:#062033; cursor:pointer; }
+.qty-btn:hover { background:#0eb493; border-color:#0eb493; color:#fff; }
+.item-qty { min-width:16px; text-align:center; font-weight:700; color:#062033; }
+.remove-item { background:none; border:none; color:#a8b0b8; cursor:pointer; font-size:13px; padding:4px 6px; border-radius:30px; }
+.remove-item:hover { color:#c0392b; background:#fbe4e1; }
+.empty-cart-message { text-align:center; color:#a8b0b8; padding:24px 0; font-style:italic; }
+.cart-total { display:flex; justify-content:space-between; align-items:center; padding-top:16px; border-top:2px dashed #e6e8ea; font-size:16px; font-weight:700; color:#062033; }
+.cart-total span:last-child { font-size:20px; color:#0eb493; }
+.checkout-btn { width:100%; margin-top:18px; background:#062033; color:#fff; border:none; border-radius:40px; padding:13px; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:.5px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; }
+.checkout-btn:hover { background:#0eb493; }
+.checkout-btn:disabled { background:#cbd2d6; cursor:not-allowed; }
+
+/* footer */
+footer { background:#062033; color:#c7ced3; padding:40px 20px; text-align:center; font-size:13px; }
+
+/* toast */
+.toast-message { position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(100px); background:#062033; color:#fff; padding:12px 26px; border-radius:40px; font-weight:600; font-size:13px; opacity:0; transition:.25s ease; pointer-events:none; z-index:2000; box-shadow:0 10px 25px rgba(6,32,51,.2); white-space:nowrap; }
+.toast-message.show { transform:translateX(-50%) translateY(0); opacity:1; }
+
+@media (max-width:600px){ .hero h2{font-size:32px;} .hero h3{font-size:17px;} .navlinks{gap:12px;font-size:12px;} }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container navwrap">
+    <div class="logo">miniShop</div>
+    <ul class="navlinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#features">Why Us</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#cart" class="cart-icon-link" id="cartIcon"><i class="fa fa-shopping-bag"></i> Cart <span class="cart-count" id="cartCount">0</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <h2>mini<span>Shop</span></h2>
+  <h3><span class="color">/simple</span> one page e-commerce.</h3>
+  <p>Quality gadgets, delivered fast</p>
+  <a href="#shop" class="hero-cta">Start Shopping <i class="fa fa-arrow-right"></i></a>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <div class="sec-title"><h2>Why Shop With Us</h2><div class="devider"><i class="fa fa-heart-o"></i></div></div>
+    <div class="feature-row">
+      <div class="service-item"><div class="service-icon"><i class="fa fa-truck fa-lg"></i></div><div class="service-desc"><h3>Free Shipping</h3><p>Every order ships free, no minimum spend. Arrives in 2–4 days.</p></div></div>
+      <div class="service-item"><div class="service-icon"><i class="fa fa-lock fa-lg"></i></div><div class="service-desc"><h3>Secure Checkout</h3><p>Payment details encrypted end-to-end for peace of mind.</p></div></div>
+      <div class="service-item"><div class="service-icon"><i class="fa fa-refresh fa-lg"></i></div><div class="service-desc"><h3>Easy Returns</h3><p>30-day returns, full refund, no questions asked.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="shop-section" id="shop">
+  <div class="container">
+    <div class="sec-title"><h2>Shop</h2><div class="devider"><i class="fa fa-heart-o"></i></div></div>
+    <div class="sec-sub-title"><p>Hand-picked electronics and accessories — add anything below to your cart.</p></div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="cart-section" id="cart">
+  <div class="container">
+    <div class="sec-title"><h2>Your Cart</h2><div class="devider"><i class="fa fa-heart-o"></i></div></div>
+    <div class="cart-layout">
+      <div class="cart-address">
+        <h3>Need a hand?</h3>
+        <p><i class="fa fa-truck"></i> Free shipping on every order</p>
+        <p><i class="fa fa-lock"></i> Secure, encrypted checkout</p>
+        <p><i class="fa fa-refresh"></i> 30-day easy returns</p>
+      </div>
+      <div class="cart-panel">
+        <div class="cart-header"><h3>Order Summary</h3><button class="clear-cart" id="clearCartBtn">Clear all</button></div>
+        <ul class="cart-items" id="cartItemsList"></ul>
+        <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+        <button class="checkout-btn" id="checkoutBtn">Checkout <i class="fa fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Copyright &copy; 2026 miniShop. Design based on the Brandi template by Themefisher.</footer>
+
+<div class="toast-message" id="toast">Item added to cart</div>
+
+<script>
+(function(){
+  const PRODUCTS=[
+    {id:1,name:'Wireless Headphones',price:89.99,emoji:'🎧'},
+    {id:2,name:'Smart Watch',price:149.99,emoji:'⌚'},
+    {id:3,name:'Portable Charger',price:39.99,emoji:'🔋'},
+    {id:4,name:'Bluetooth Speaker',price:59.99,emoji:'🔊'},
+    {id:5,name:'Mechanical Keyboard',price:129.99,emoji:'⌨️'},
+    {id:6,name:'Gaming Mouse',price:49.99,emoji:'🖱️'}
+  ];
+  let cart=[];
+  const productGrid=document.getElementById('productGrid');
+  const cartItemsList=document.getElementById('cartItemsList');
+  const cartCountSpan=document.getElementById('cartCount');
+  const cartTotalSpan=document.getElementById('cartTotal');
+  const clearCartBtn=document.getElementById('clearCartBtn');
+  const checkoutBtn=document.getElementById('checkoutBtn');
+  const toastEl=document.getElementById('toast');
+  const cartIcon=document.getElementById('cartIcon');
+  let toastTimer;
+  function showToast(msg){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove('show'),1800);}
+  function renderProducts(){
+    productGrid.innerHTML=PRODUCTS.map(p=>`
+      <div class="product-card">
+        <div class="product-emoji">${p.emoji}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${p.price.toFixed(2)}</div>
+        <button class="add-btn" data-id="${p.id}"><i class="fa fa-plus"></i> Add to cart</button>
+      </div>`).join('');
+    document.querySelectorAll('.add-btn').forEach(btn=>btn.addEventListener('click',()=>addToCart(Number(btn.dataset.id))));
+  }
+  function addToCart(id){
+    const existing=cart.find(i=>i.id===id);
+    if(existing) existing.qty+=1; else cart.push({id,qty:1});
+    updateCartUI();
+    const p=PRODUCTS.find(p=>p.id===id);
+    showToast(`${p.emoji} ${p.name} added`);
+  }
+  function updateCartUI(){
+    cartCountSpan.textContent=cart.reduce((s,i)=>s+i.qty,0);
+    if(cart.length===0){
+      cartItemsList.innerHTML=`<li class="empty-cart-message">Your cart is empty 🛒</li>`;
+      cartTotalSpan.textContent='$0.00';
+      checkoutBtn.disabled=true;
+      return;
+    }
+    let html='',total=0;
+    cart.forEach(ci=>{
+      const p=PRODUCTS.find(p=>p.id===ci.id); if(!p) return;
+      total+=p.price*ci.qty;
+      html+=`<li class="cart-item">
+        <div class="cart-item-info"><span class="cart-item-emoji">${p.emoji}</span><span class="cart-item-name">${p.name}</span><span class="cart-item-price">$${p.price.toFixed(2)}</span></div>
+        <div class="cart-item-actions">
+          <button class="qty-btn dec-btn" data-id="${p.id}">−</button>
+          <span class="item-qty">${ci.qty}</span>
+          <button class="qty-btn inc-btn" data-id="${p.id}">+</button>
+          <button class="remove-item" data-id="${p.id}"><i class="fa fa-trash-o"></i></button>
+        </div></li>`;
+    });
+    cartItemsList.innerHTML=html;
+    cartTotalSpan.textContent=`$${total.toFixed(2)}`;
+    checkoutBtn.disabled=false;
+    document.querySelectorAll('.dec-btn').forEach(b=>b.addEventListener('click',()=>updateQty(Number(b.dataset.id),-1)));
+    document.querySelectorAll('.inc-btn').forEach(b=>b.addEventListener('click',()=>updateQty(Number(b.dataset.id),1)));
+    document.querySelectorAll('.remove-item').forEach(b=>b.addEventListener('click',()=>removeItem(Number(b.dataset.id))));
+  }
+  function updateQty(id,delta){
+    const ci=cart.find(i=>i.id===id); if(!ci) return;
+    const nq=ci.qty+delta;
+    if(nq<=0) cart=cart.filter(i=>i.id!==id); else ci.qty=nq;
+    updateCartUI();
+  }
+  function removeItem(id){ cart=cart.filter(i=>i.id!==id); updateCartUI(); showToast('Item removed'); }
+  function clearCart(){ if(cart.length===0) return; cart=[]; updateCartUI(); showToast('Cart cleared'); }
+  function checkout(){
+    if(cart.length===0){ showToast('Cart is empty'); return; }
+    const totalItems=cart.reduce((s,i)=>s+i.qty,0);
+    const totalPrice=cart.reduce((s,i)=>{const p=PRODUCTS.find(p=>p.id===i.id);return s+(p?p.price*i.qty:0);},0);
+    showToast(`✅ Order placed! ${totalItems} items · $${totalPrice.toFixed(2)}`);
+    cart=[]; updateCartUI();
+  }
+  clearCartBtn.addEventListener('click',clearCart);
+  checkoutBtn.addEventListener('click',checkout);
+  cartIcon.addEventListener('click',(e)=>{ if(cart.length===0){ e.preventDefault(); showToast('Your cart is empty'); } });
+  renderProducts();
+  updateCartUI();
+})();
+</script>
+</body>
+</html>
